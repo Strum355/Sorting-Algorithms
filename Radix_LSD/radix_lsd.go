@@ -25,7 +25,7 @@ func init() {
 func main() {
 	var random = make([]int, arrSize)
 	
-    seed := rand.NewSource(time.Now().UnixNano())
+    	seed := rand.NewSource(time.Now().UnixNano())
 	seededRand := rand.New(seed)
 	
 	for i := 0; i < arrSize; i++ {
