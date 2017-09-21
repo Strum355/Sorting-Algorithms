@@ -1,31 +1,10 @@
-package main
+package radix
 
-import (
-	"flag"
-	"math/rand"
-	"strings"
-	"time"
-
-	tm "github.com/buger/goterm"
-)
-
-var (
-	arrSize   int
-	maxNum    int
-	speedMult int
-)
-
-func init() {
-	flag.IntVar(&arrSize, "s", 100, "")
-	flag.IntVar(&speedMult, "t", 5, "")
-	flag.IntVar(&maxNum, "max", 300, "")
-	flag.Parse()
-}
-
+/* 
 func main() {
 	var random = make([]int, arrSize)
 	
-    	seed := rand.NewSource(time.Now().UnixNano())
+    seed := rand.NewSource(time.Now().UnixNano())
 	seededRand := rand.New(seed)
 	
 	for i := 0; i < arrSize; i++ {
@@ -42,8 +21,8 @@ func main() {
 	tm.Println("Done!")
 	tm.Flush()
 }
-
-func countSort(arr []int, exp1 int) []int {
+ */
+func countSort(arr []int, exp1, arrSize int) []int {
 	var n = arrSize
 
 	var output = make([]int, n)
@@ -75,9 +54,8 @@ func countSort(arr []int, exp1 int) []int {
 	return arr
 }
 
-func radixSort(arr []int) []int {
-	time.Sleep(time.Duration(speedMult) * time.Second)
-
+// Sort is a radix sort algorithm adapted from geeksforgeeks python code
+func Sort(arr []int, arrSize, _ int) []int {
 	max1 := max(arr)
 
 	var out []int
@@ -86,11 +64,11 @@ func radixSort(arr []int) []int {
 	for max1/exp > 0 {
 
 		// move CLI cursor to top left corner to overwrite previously output data
-		tm.MoveCursor(0, 2)
+		//tm.MoveCursor(0, 2)
 
-		out = countSort(arr, exp)
+		out = countSort(arr, exp, arrSize)
 
-		for _, num := range out {
+/* 		for _, num := range out {
 			for i := 0; i < tm.Width(); i++ {
 				tm.Print(" ")
 			}
@@ -98,11 +76,7 @@ func radixSort(arr []int) []int {
 			tm.Print("\r", num, strings.Repeat("-", num))
 			tm.Flush()
 
-			time.Sleep(time.Duration(speedMult) * 2 * time.Millisecond)
-		}
-
-		time.Sleep(time.Duration(speedMult) * time.Second)
-
+		} */
 		exp *= 10
 	}
 

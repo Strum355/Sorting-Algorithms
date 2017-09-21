@@ -1,0 +1,30 @@
+package Gravity
+
+import (
+	"testing"
+	util "../Utils"
+)
+
+func BenchmarkSlowGravity(b *testing.B) {
+	a := util.MakeArray()
+	b.ResetTimer()
+	for n := 0; n < b.N; n++ {
+		GravitySortSlow(a)
+	}
+}
+
+func BenchmarkFastGravity(b *testing.B) {
+	a := MakeArray()
+	b.ResetTimer()
+	for n := 0; n < b.N; n++ {
+		GravitySortFast(a)
+	}
+}
+
+func BenchmarkFastestGravity(b *testing.B) {
+	a := MakeArray()
+	b.ResetTimer()	
+	for n := 0; n < b.N; n++ {
+		GravitySortFastest(a)
+	}
+}
